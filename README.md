@@ -1,6 +1,6 @@
 citation.js
 ===========
 
-progressively enhance in-page anchor links, designed for smarter footnotes.
+This is the github pages branch.
 
-Demo: http://user24.github.io/citation.js
+You probably want the [master](https://github.com/user24/citation.js) branch.
