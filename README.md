@@ -1,4 +1,6 @@
 citation.js
 ===========
 
-Highlights clicked citations / footnotes in HTML documents
+progressively enhance in-page anchor links, designed for smarter footnotes.
+
+Demo: http://user24.github.io/citation.js
