@@ -1,0 +1,115 @@
+<!--   ___                                      /
+      /      __  __  __  /    *  _    ___  __  /
+     /  __  /   /_  /_  /--  /  / |  /  / /_
+     \___| /   /__ /__ /_   /  /  | /__/ __/  *
+                                   _  /
+         from @user24             /__/
+         http://github.com/user24
+-->
+<html>
+<head>
+    <script src="citation.js"></script>
+    <script>
+        // You'll probably want to do this onDOMContentLoaded or $.ready instead
+        window.onload = citationjs;
+    </script>
+    <style>
+    /* styles that you might want to pinch */
+    P, LI {
+        /* I've made the transition quite slow and the color quite dark so as to attract your eyes to the element*/
+        /* If you know where to look already it looks a bit heavy-handed, but your users don't know where to look already (that's the point)*/
+        /* If you edit the transition time you might also want to look at the setTimeout timing in `followCitation` */
+        /*fade out*/
+        -webkit-transition: background-color 250ms linear;
+        -moz-transition: background-color 250ms linear;
+        -o-transition: background-color 250ms linear;
+        -ms-transition: background-color 250ms linear;
+        transition: background-color 250ms linear;
+    }
+    P.clicked, LI.clicked {
+        /*snap on*/
+        -webkit-transition: background-color 0ms linear;
+        -moz-transition: background-color 0ms linear;
+        -o-transition: background-color 0ms linear;
+        -ms-transition: background-color 0ms linear;
+        transition: background-color 0ms linear;
+        background-color: #B6FFD0; /*minty fresh.*/
+    }
+    /* styles for this particular demo page */
+    body {
+            font-family: serif;
+            font-size: 12pt;
+            padding: 100px;
+            width: 750px;
+    }
+    #window{
+            width: 250px;
+            border: 3px outset #AAA;
+    }
+    #document{
+            height: 150px;
+            padding: 2px;
+            padding-right: 1px;
+    }
+    #scrollbar {
+            margin-top: 30px;
+            height: 50px;
+            border-right: 10px solid #EEE;
+    }
+    #blank {
+            margin-top: 100px;
+            height: 900px;
+            color: #DDD;
+    }
+    UL{
+        padding:0;
+    }
+    LI{
+            list-style-type: none;
+    }
+    </style>
+</head>
+<body>
+    <h1>citation.js demo</h1>
+    <p>
+    citation.js progressively enhances in-page anchor links.
+    </p>
+    <p>
+    It's written in pure library-agnostic JavaScript, passes JSLint, and it gracefully degrades. It should work on every browser since IE6, but I'm not making any promises.</p>
+    <p>On page load, the script adds a click handler to all links that point to a # URL on the same page. When fired, the handler will scroll the document to the parent element of the anchor and briefly apply a "clicked" class. Try following this citation <a href="#cite-demo" name="cite-mention-demo">[1]</a>.
+    </p>
+    <p>
+    The reason we scroll to the parent is because the user often wants to see more context, but the native behaviour is to scroll only the named anchor into view, which often means that the user has to scroll up a bit anyway.
+    </p>
+    <p>
+    In the native browser behaviour, what you'd see is this (forgive the crude browser mockup):
+    </p>
+    <div id="window">
+        <div id="document">
+            this citation [1].
+            <div id="scrollbar" onmousedown="alert('really?');">&nbsp;</div>
+        </div>
+    </div>
+    <p>
+    Which isn't half as useful as seeing the whole paragraph on screen.
+    </p>
+    <p>
+    A future version might do something awfully clever like walking up the parents until it finds a <code>P</code> tag or something, but for now it pretty much assumes your structure is <code>P > A</code>, so if your anchors are wrapped in some other element then it will only scroll to and highlight whichever parent tag you've used. For example this next citation is wrapped in an <code>em</code> tag, which basically means it'll revert to the native behaviour <em><a href="#cite-nativelike" name="cite-mention-nativelike">[2]</a></em>.
+    </p>
+    <p>
+    As an aside, I use the following anchor naming convention:<br /><br />
+    All citations are given a short slug, often derived from the author or domain name that they point to.<br />
+    The inline citation mentions are named <code>cite-mention-slug</code>.<br />
+    The citation sources, the footnotes, are named <code>cite-slug</code>.<br />
+    <br />
+    This makes for clear code and pretty URLs.
+    </p>
+    <div id="blank">(This space left intentionally blank.)</div>
+    <h3>Footnotes</h3>
+    <p>
+        <ul>
+            <li><a name="cite-demo" href="#cite-mention-demo">[1]</a> Here is the citation. Now click the number in brackets to go back to the mention.</li>
+            <li><a name="cite-nativelike" href="#cite-mention-nativelike">[2]</a> You'll see what I mean when you click back.</li>
+    </p>
+</body>
+</html>
